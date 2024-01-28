@@ -1,6 +1,7 @@
 require("vinicius.lazy")
 require("vinicius.set")
 require("vinicius.remap")
+require("plugins.lualine")
 
 
 -- disable netrw at the very start of your init.lua
@@ -31,7 +32,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = ThePrimeagenGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
@@ -42,36 +43,51 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 
--- Error and warning signs.
+-- -- Error and warning signs.
 vim.g.ale_sign_error = '⤫'
 vim.g.ale_sign_warning = '⚠'
+--
+-- -- vim.g.ale_fix_on_save = 1
+-- -- vim.g.ale_javascript_prettier_use_global = 1
 
-vim.g.ale_fix_on_save = 1
--- g.ale_javascript_prettier_use_global = 1
+vim.g.ale_floating_preview = 1  -- use floating window to display hover information
+vim.g.ale_sign_column_always = 1  -- prevent text jumping around
+vim.g.ale_disable_lsp = 0
+
+vim.b.ale_linters = {
+    javascript = { 'eslint' },
+    typescript = { 'eslint' },
+    javascriptreact = {  'eslint' },
+    typescriptreact = {  'eslint' }
+}
+vim.b.ale_fixers = {
+    javascript = { 'prettier', 'eslint' },
+    typescript = { 'prettier', 'eslint' },
+    javascriptreact = { 'prettier', 'eslint' },
+    typescriptreact = { 'prettier', 'eslint' }
+}
 
 vim.g.ale_linters = {
-    json = {'prettier'},
-    javascript = {'prettier', 'eslint'},
-    typescript = {'prettier', 'eslint'},
-    javascriptreact = {'prettier', 'eslint'},
-    typescriptreact = {'prettier', 'eslint'}
+    javascript = { 'eslint' },
+    typescript = { 'eslint' },
+    javascriptreact = { 'eslint' },
+    typescriptreact = { 'eslint' }
 }
-
 vim.g.ale_fixers = {
-    ['*'] = {'prettier', 'remove_trailing_lines', 'trim_whitespace'},
-    json = {'prettier'},
-    javascript = {'prettier', 'eslint'},
-    typescript = {'prettier', 'eslint'},
-    javascriptreact = {'prettier', 'eslint'},
-    typescriptreact = {'prettier', 'eslint'}
+    javascript = { 'prettier', 'eslint' },
+    typescript = { 'prettier', 'eslint' },
+    javascriptreact = { 'prettier', 'eslint' },
+    typescriptreact = { 'prettier', 'eslint' }
 }
+vim.g.ale_lint_on_text_changed = 1
+vim.g.ale_fix_on_save = 1
 
 -- disbale deno as a linter
-vim.g.ale_linters_ignore = {
-    typescript = {'deno'},
-    typescriptreact = {'deno'},
-    nix = {'nix', 'statix'}
-}
+-- vim.g.ale_linters_ignore = {
+--     typescript = { 'deno' },
+--     typescriptreact = { 'deno' },
+--     nix = { 'nix', 'statix' }
+-- }
 
 -- This module contains a number of default definitions
 local rainbow_delimiters = require 'rainbow-delimiters'
