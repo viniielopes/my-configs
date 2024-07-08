@@ -2,6 +2,7 @@ require("vinicius.lazy")
 require("vinicius.set")
 require("vinicius.remap")
 require("plugins.lualine")
+require("plugins.nvim-tree")
 
 
 -- disable netrw at the very start of your init.lua

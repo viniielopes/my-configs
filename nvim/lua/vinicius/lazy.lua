@@ -15,7 +15,7 @@ vim.g.mapleader = " "
 local plugins = {
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.2',
+        tag = '0.1.6',
         -- or                            , branch = '0.1.x',
         dependencies = { { 'nvim-lua/plenary.nvim' } },
         config = function()
@@ -29,41 +29,43 @@ local plugins = {
                 }
             }
         end
-    }, {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    config = function() vim.cmd('colorscheme rose-pine') end
-}, {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-        require("trouble").setup {
-            icons = true
-            -- your configuration comes here
-            -- or leave it empty to  the default settings
-            -- refer to the configuration section below
-        }
-    end
-}, {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-        'HiPhish/rainbow-delimiters.nvim'
     },
-    build = function()
-        local ts_update = require('nvim-treesitter.install').update({
-            with_sync = true
-        })
-        ts_update()
-    end
-},
+    {
+        'rose-pine/neovim',
+        name = 'rose-pine',
+        config = function() vim.cmd('colorscheme rose-pine') end
+    },
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {}
+    },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'HiPhish/rainbow-delimiters.nvim'
+        },
+        build = function()
+            local ts_update = require('nvim-treesitter.install').update({
+                with_sync = true
+            })
+            ts_update()
+        end
+    },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = {
             'nvim-treesitter'
         }
     },
+
     { "nvim-treesitter/playground" },
-    { "theprimeagen/harpoon" },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+
     { "theprimeagen/refactoring.nvim" },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
@@ -101,7 +103,6 @@ local plugins = {
     { 'L3MON4D3/LuaSnip' },
     { "folke/zen-mode.nvim" },
     { "eandrju/cellular-automaton.nvim" },
-    { "laytan/cloak.nvim" },
     { "dense-analysis/ale" },
     {
         'windwp/nvim-autopairs',
@@ -132,10 +133,12 @@ local plugins = {
     },
     { 'nvim-tree/nvim-web-devicons' },
     {
-        'nvim-tree/nvim-tree.lua',
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
         dependencies = {
-            'nvim-tree/nvim-web-devicons' -- optional
-        }
+            "nvim-tree/nvim-web-devicons",
+        },
     },
     {
         'norcalli/nvim-colorizer.lua',
@@ -233,6 +236,18 @@ local plugins = {
             vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
             vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
         end
+    },
+    { 'sammce/fleeting.nvim' },
+    {
+        "FabijanZulj/blame.nvim",
+        config = function()
+            require("blame").setup()
+        end
+    },
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {} -- your configuration
     }
 }
 
