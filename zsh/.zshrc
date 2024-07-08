@@ -21,7 +21,7 @@ alias vim='nvim'
 alias postman='~/Downloads/postman-linux-x64/Postman/Postman </dev/null &>/dev/null &'
 alias lg='lazygit'
 alias update='sudo dnf update -y'
-alias nvimdir='cd .config/nvim/'
+alias nvimdir='cd ~/.config/nvim/'
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -127,3 +127,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 source /home/viniciuslopes/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GPG_TTY=$(tty)
+
